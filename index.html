@@ -6,8 +6,10 @@
     	<link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/mapbox/assembly/publisher-staging/src/svgs/mapbox.svg">
 		
     <style>
-      html, body {
+      html, body { 
         overflow: hidden;
+        width: 100%;
+        height: 100%;
       }
 
       /* Overall layout */
@@ -62,18 +64,19 @@
 
       /* Page container */
       #page-container {
-        height: calc(100% - 120px);
-          top: 140px;
-          position: absolute;
+        position: absolute;
+        top: 140px;
+        width: 100%;
+        height: calc(100% - 120px);    
       }
 
       /* Inner white content box with scrollable area */
       #inner-page {
-        padding: 40px 40px;
-        width: 95%;
-        height: 80vh;
-        margin: 5% 1%;
         background-color: white;
+        width: 90%;
+        height: 90%;
+        margin: 2% 5%;
+        padding: 40px;
         overflow-y: scroll;
         overflow-x: hidden;
       }

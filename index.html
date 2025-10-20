@@ -11,20 +11,32 @@
         width: 100%;
         height: 100%;
       }
+      
+      /* Overall layout */
+      body {
+        background-color: #ebccff;
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+          font-family: "Poppins", sans-serif;
+          font-weight: 400;
+          font-style: normal;
+      }
 
       /* Title section */
       #title-block {
         width: 100%;
+        height: 100%;
+        margin: 10;
         position: absolute;
       }
 
       #title-cont {
-        width: 800px;
+        width: 100%;
         height: 100%;
         margin: 10;
-        float: left;
-        position: relative;
-        left: calc(50% - 400px);
+        position: absolute;
       }
 
       #title-left{
@@ -66,16 +78,6 @@
           background-color: white;
           overflow-y: scroll;
           overflow-x: hidden;
-      }
-
-      /* Headings & lists */
-      h1 {
-        margin: 0 0 10px;
-      }
-
-      ul {
-        list-style-type: disc;
-        margin-left: 20px;
       }
 
       /* Map container */

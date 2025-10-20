@@ -18,7 +18,7 @@
         padding: 10px;
         width: 100vw;
         height: 100vh;
-        margin: 0;
+        margin: -20px -1px;
           font-family: "Poppins", sans-serif;
           font-weight: 400;
           font-style: normal;
@@ -34,8 +34,11 @@
         width: 800px;
         height: 100%;
         margin: 0;
+        float: left;
         position: relative;
+        left: calc(50% - 400px);
       }
+
           #title-left{
               background-image:url('images/angelcat.png');
               background-size: contain;
@@ -63,21 +66,21 @@
 
       /* Page container */
       #page-container {
-        position: absolute;
-        top: 140px;
-        width: 100%;
-        height: calc(100% - 120px);    
+          width: 100%;
+          height: calc(100% - 120px);
+          top: 90px;
+          position: absolute;
       }
 
       /* Inner white content box with scrollable area */
       #inner-page {
-        background-color: white;
-        width: 90%;
-        height: 90%;
-        margin: 2% 5%;
-        padding: 40px;
-        overflow-y: scroll;
-        overflow-x: hidden;
+          padding: 10px;
+          width: 90%;
+          height: 96%;
+          margin: 2% 5%;
+          background-color: white;
+          overflow-y: scroll;
+          overflow-x: hidden;
       }
 
       /* Headings & lists */

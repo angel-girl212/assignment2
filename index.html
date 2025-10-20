@@ -1,140 +1,149 @@
 <!DOCTYPE html>
 <html>
-	<!--HEAD - section of your website adds libraries, style and site settings-->
-	<head>
-    	<title>Assignment 2</title>
-    	<link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/mapbox/assembly/publisher-staging/src/svgs/mapbox.svg">
-		
-    <style>
-      html, body { 
-        overflow: hidden;
-        width: 100%;
-        height: 100%;
-      }
+    <!--HEAD - section of your website adds libraries, style and site settings-->
+    <head>
+      <title>Assignment 2</title>
+      <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/mapbox/assembly/publisher-staging/src/svks/mapbox.svg">
       
-      /* Overall layout */
-      body {
-        background-color: #ebccff;
-        padding: 0;
-        width: 100vw;
-        height: 100vh;
-        margin: 0;
+      <style>
+        html, body { 
+          overflow: hidden;
+          width: 100%;
+          height: 100%;
+        }
+        
+        /* Overall layout */
+        body {
+          background-color: #ebccff;
+          padding: 0;
+          width: 100vw;
+          height: 100vh;
+          margin: 0;
           font-family: "Poppins", sans-serif;
           font-weight: 400;
           font-style: normal;
-      }
-
-      /* Title section */
-      #title-block {
-        width: 100%;
-        height: 100%;
-        margin: 10;
-        position: absolute;
-      }
-
-      #title-cont {
-        width: 100%;
-        height: 100%;
-        margin: 10;
-        position: absolute;
-      }
-
-      #title-left{
-          background-image:url('images/angelcat.png');
-          background-size: contain;
-          position: sticky;
-          top: 10px;
-          height: 100px;
-          width: 100px;
-      }
-      #title-middle{
-          height: 100%;
-          width: 1500px;
           text-align: center;
-      }
-      #title-right{
-          background-image:url('images/angelcat.png');
+        }
+
+        /* Title section */
+        #title-block {
+          width: 100%;
+          padding: 20px 0;
+          background-color: #ebccff;
+        }
+
+        #title-cont {
+          width: 800px;
+          margin: 0 auto;
+          text-align: center;
+        }
+
+        #title-left, #title-right {
+          background-image: url('images/angelcat.png');
           background-size: contain;
-          position: sticky;
-          top: 10px;
+          background-repeat: no-repeat;
           height: 100px;
           width: 100px;
-      }
+          display: inline-block;
+          vertical-align: middle;
+        }
 
-      /* Page container */
-      #page-container {
+        #title-middle {
+          display: inline-block;
+          vertical-align: middle;
+          text-align: center;
+          width: 500px;
+          margin: 0 20px;
+        }
+
+        /* Page container */
+        #page-container {
           width: 100%;
-          height: calc(100% - 120px);
-          top: 100px;
-          position: absolute;
-      }
+          height: calc(100% - 160px);
+        }
 
-      /* Inner white content box with scrollable area */
-      #inner-page {
-          padding: 10px;
-          width: 95%;
-          height: 10%;
-          margin: 2% 5%;
+        /* Inner white content box with scrollable area */
+        #inner-page {
+          padding: 20px;
+          width: 800px;
+          margin: 20px auto;
           background-color: white;
           overflow-y: scroll;
           overflow-x: hidden;
-      }
+          border-radius: 8px;
+          box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+          text-align: left;
+        }
 
-      /* Map container */
-      #map {
-        width: 100%;
-        height: 500px;
-        margin: 40px 0 40px;
-      }
-    </style>
-    <link href="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css" rel="stylesheet">
-    <script src="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js"></script>
+        /* Headings */
+        h1, h2 {
+          margin: 10px 0;
+          text-align: center;
+        }
 
-<!--Load Google Fonts-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;900&display=swap" rel="stylesheet">
-  </head>  
-	<body>
-    		<div id="title-block">
-            <div id="title-cont">
-              <div id="title-left"></div>
-              <div id="title-middle">
-                <!--H1 is a header. large text with some padding above and below-->
-                <h1>Assignment 2: Web Scraping with Google Spreadsheet and XPath</h1>
-                <h2>Group 3: Kyra, Ben, Jack</h2>
+        h1 {
+          font-size: 24px;
+        }
+
+        h2 {
+          font-size: 20px;
+        }
+
+        /* List */
+        ul {
+          list-style-type: disc;
+          margin-left: 20px;
+          padding: 0;
+        }
+
+        li {
+          margin: 8px 0;
+        }
+
+        /* Map container */
+        #map {
+          width: 800px;
+          height: 500px;
+          margin: 20px auto;
+          border-radius: 8px;
+          box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+      </style>
+      <link href="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css" rel="stylesheet">
+      <script src="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js"></script>
+
+  <!--Load Google Fonts-->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;900&display=swap" rel="stylesheet">
+    </head>  
+    <body>
+          <div id="title-block">
+              <div id="title-cont">
+                <div id="title-left"></div>
+                <div id="title-middle">
+                  <!--H1 is a header. large text with some padding above and below-->
+                  <h1>Assignment 2: Web Scraping with Google Spreadsheet and XPath</h1>
+                  <h2>Group 3: Kyra, Ben, Jack</h2>
+                </div>
+                <div id="title-right"></div>
               </div>
-              <div id="title-right"></div>
-            </div>
-        </div>
-      <div id="page-container">
-      		
-          <div id="inner-page">
-              <h2>Restos Mtl</h2>
-                <ul>
-                    <li>
-                        bullet point if we need it
-                    </li>
-                    <li>
-                        bullet point if we need it
-                    </li>
-                    <li>
-                        bullet point if we need it
-                    </li>
-                    <li>
-                        bullet point if we need it
-                    </li>
-                    <li>
-                        bullet point if we need it
-                    </li>
-                    <li>
-                        bullet point if we need it
-                    </li>
-                </ul> 
           </div>
-          <div id="map"></div>
-      </div>
-	</body>
+        <div id="page-container">
+            <div id="inner-page">
+                <h2>Restos Mtl</h2>
+                  <ul>
+                      <li>bullet point if we need it</li>
+                      <li>bullet point if we need it</li>
+                      <li>bullet point if we need it</li>
+                      <li>bullet point if we need it</li>
+                      <li>bullet point if we need it</li>
+                      <li>bullet point if we need it</li>
+                  </ul> 
+            </div>
+            <div id="map"></div>
+        </div>
+    </body>
     <script>
     mapboxgl.accessToken = 'pk.eyJ1IjoiYW5nbGUta3ByIiwiYSI6ImNtZjJybG10YzFkbnUycG80N3J5cDVid2QifQ.SoIeeUn_3CNLmzU2cgtv1w';
         const map = new mapboxgl.Map({

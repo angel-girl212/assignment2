@@ -78,15 +78,14 @@
         margin-left: 20px;
       }
 
-      li {
-        margin-bottom: 20px;
-        line-height: 1.5;
+      .sub-content {
+          margin-left: 20px; /* indents both text and image */
       }
-
       .desc {
-        display: block;
-        margin-left: 20px;
-        color: black;
+          display: block;
+          color: #555;
+          font-size: 0.95em;
+          margin-bottom: 5px;
       }
 
       /* Map container */
@@ -127,9 +126,11 @@
                 <div id="map"></div>
                   <ul>
                       <li>
-                        Restaurant 12<br>
-                        <span class="desc">rating</span>
-                        <img src="images/angelcat.png" width="100" height="100">
+                          Restaurant 12
+                          <div class="sub-content">
+                              <span class="desc">rating</span><br>
+                              <img src="images/angelcat.png" width="100" height="100" alt="Restaurant photo">
+                          </div>
                       </li>
                   </ul> 
                 <!---<hr>--->

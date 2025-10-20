@@ -6,52 +6,77 @@
     	<link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/mapbox/assembly/publisher-staging/src/svgs/mapbox.svg">
 		
     <style>
-        	html, body {
-                    overflow: hidden;
-                }
-                body{
-                    background-color: #ebccff;
-                    padding: 10px;
-                    width: 100vw;
-                    height: 100vh;
-                    margin: -20px -1px;
-                      font-family: "Papyrus", sans-serif;
-                      font-weight: 400;
-                      font-style: normal;
-                }
-                
-                #title-block{
-                    width: 100%;
-                    position: absolute;
-                }
-                
-                #title-cont{
-                    width: 1000px;
-                    height: 100%;
-                    float: left;
-                    position: relative;
-                    left: calc(50% - 400px);
-                }
-                #page-container{
-                    width: 100%;
-                    height: calc(100% - 120px);
-                    top: 80px;
-                    position: absolute;
-                }
-                #inner-page{
-                    padding: 10px;
-                    width: 90%;
-                    height: 96%;
-                    margin: 2% 5%;
-                    background-color: white;
-                    overflow-y: scroll;
-                }
-                #map{
-                    margin-left: 20px;
-                    height: 600px;
-                    width: 1000px; 
-                }
-		</style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        background-color: #ebccff;
+        font-family: "Papyrus", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+      }
+
+      /* Overall page container */
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      /* Title block styling */
+      #title-block {
+        width: 100%;
+        text-align: center;
+        padding: 30px 0 10px;
+      }
+
+      #title-cont {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        margin-bottom: 5px;
+      }
+
+      /* Page container */
+      #page-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+
+      /* Inner white section with scrollable content */
+      #inner-page {
+        background-color: white;
+        width: 85%;
+        max-width: 1000px;
+        border-radius: 12px;
+        padding: 30px 40px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        overflow-y: auto;
+        margin-bottom: 40px;
+      }
+
+      /* Headings & lists */
+      h2 {
+        margin-top: 0;
+      }
+
+      ul {
+        margin: 15px 0;
+      }
+
+      /* Map container */
+      #map {
+        width: 100%;
+        height: 500px;
+        margin: 20px 0 40px;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+    </style>
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js"></script>
     

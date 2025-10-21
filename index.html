@@ -77,7 +77,7 @@
 			gap: 70px; /* Space between columns */
 			padding: 20px;
 			box-sizing: border-box;
-			}
+		  }
 
           /* Left column container for inner-page and photo-gallery */
           #left-column {
@@ -85,59 +85,33 @@
 			flex-direction: column;
 			width: 25%;
 			gap: 20px;
-			}
+		  }
 
           /* Inner white content box */
           #inner-page {
-			padding: 20px;
-			width: 100%; /* Changed from 25% to 100% of left column */
-			height: 400px;
-			background-color: white;
-			overflow-y: scroll;
-			overflow-x: hidden;
-			border-radius: 8px;
-			text-align: left;
-			margin: 0px; /* Remove individual margins */
-			display: block;
-			float: none;
-			}
-
-          .photo-gallery-wrapper {
-			position: relative;
-			width: 100%;
-			height: 220px;
-			background-color: white;
-			border-radius: 8px;
-			overflow: hidden;
-            padding: 20px;
-            margin: 0px;
+				padding: 20px;
+				width: 100%; /* Changed from 25% to 100% of left column */
+				height: 400px;
+				background-color: white;
+				overflow-y: scroll;
+				overflow-x: hidden;
+				border-radius: 8px;
+				text-align: left;
+				margin: 0px; /* Remove individual margins */
+				display: block;
+				float: none;
 		  }
 	
 		  #photo-gallery {
-              display: flex;
-              transition: transform 0.5s ease;
-              height: 100%;
-              gap: 0px;
-              align-items: center;
-              padding: 0px;
-              margin: 0px;
-          }
-
-          #photo-gallery .slide {
-              width: 103%;
-              height: 100%;
-              flex-shrink: 0;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              box-sizing: border-box;
-          }
-
-          #photo-gallery .title-slide h3 {
-              color: #e41b4c;
-              font-size: 24px;
-              margin: 0px;
-              padding: 20px;
+			  display: flex;
+			  transition: transform 0.5s ease;
+			  height: 100%;
+			  gap: 0px;
+			  align-items: center;
+			  padding: 0px;
+			  margin: 0px;
+			  overflow-y: hidden;
+			  overflow-x: scroll;
           }
 
           #photo-gallery img {
@@ -147,27 +121,6 @@
               object-fit: cover;
               flex-shrink: 0;
           }
-	
-		  .arrow {
-			position: absolute;
-			top: 50%;
-			transform: translateY(-50%);
-			background-color: rgba(255, 255, 255, 0.2);
-			border: none;
-			font-size: 2rem;
-			cursor: pointer;
-			padding: 10px;
-			border-radius: 50%;
-			z-index: 2;
-			transition: background-color 0.3s ease;
-		  }
-	
-		  .arrow:hover {
-			background-color: rgba(255, 255, 255, 0.8);
-		  }
-	
-		  .arrow.left { left: 5px; color: #e41b4c; }
-		  .arrow.right { right: 5px; color: #e41b4c; }
 		  
           /* Headings */
           h1, h2, h3 {
@@ -259,92 +212,74 @@
                           <li>bullet point if we need it</li>
                         </ul> 
                 </div>
-				<div class="photo-gallery-wrapper">
-					<button class="arrow left" onclick="slideGallery(-1)">&#10094;</button>
-		                <div id="photo-gallery">
-		                  <!-- Title slide as first slide -->
-		                  <div class="slide title-slide">
-		                    <h3>Photo Gallery</h3>
-		                  </div>
-		                  <!-- Image slides -->
-		                  <img src="images/allo.gif">
-						  <img src="images/auxliles.gif">
-						  <img src="images/balbastik.gif">
-						  <img src="images/banquise.gif">
-						  <img src="images/barranco.png">
-						  <img src="images/birbante.gif">
-						  <img src="images/bleu.gif">
-						  <img src="images/boca.gif">
-						  <img src="images/caribou.gif">
-						  <img src="images/coba.gif">
-						  <img src="images/coco.gif">
-						  <img src="images/cout.gif">
-						  <img src="images/crecque.gif">
-						  <img src="images/diablos.gif">
-						  <img src="images/ellounge.png">
-						  <img src="images/fish.gif">
-						  <img src="images/frite.gif">
-						  <img src="images/guru.gif">
-						  <img src="images/iber.gif">
-						  <img src="images/india.gif">
-						  <img src="images/j.gif">
-						  <img src="images/judinstrom.png">
-						  <img src="images/labelle.gif">
-						  <img src="images/levidence.gif">
-						  <img src="images/lobby.gif">
-						  <img src="images/loeuf.gif">
-						  <img src="images/magnolia.gif">
-						  <img src="images/manana.gif">
-						  <img src="images/mckibbins.gif">
-						  <img src="images/mirazu.gif">
-						  <img src="images/mlle.gif">
-						  <img src="images/ohana.gif">
-						  <img src="images/panzeria.gif">
-						  <img src="images/petite.gif">
-						  <img src="images/pho.gif">
-						  <img src="images/piel.canela.gif">
-						  <img src="images/piel.gif">
-						  <img src="images/pizza.gif">
-						  <img src="images/point.gif">
-						  <img src="images/pronto.png">
-						  <img src="images/ptit.gif">
-						  <img src="images/ravito.gif">
-						  <img src="images/rutba.gif">
-						  <img src="images/saint.gif">
-						  <img src="images/sandhu.gif">
-						  <img src="images/selva.gif">
-						  <img src="images/snatch.gif">
-						  <img src="images/sv.png">
-						  <img src="images/thai.gif">
-						  <img src="images/zeez.gif">
-		                </div>
-					<button class="arrow right" onclick="slideGallery(1)">&#10095;</button>
-				</div>
-            </div>    
+		        <div id="photo-gallery">
+		            <h3>Photo Gallery</h3>
+					  <!-- Image slides -->
+					  <img src="images/allo.gif">
+					  <img src="images/auxliles.gif">
+					  <img src="images/balbastik.gif">
+					  <img src="images/banquise.gif">
+					  <img src="images/barranco.png">
+					  <img src="images/birbante.gif">
+					  <img src="images/bleu.gif">
+					  <img src="images/boca.gif">
+					  <img src="images/caribou.gif">
+					  <img src="images/coba.gif">
+					  <img src="images/coco.gif">
+					  <img src="images/cout.gif">
+					  <img src="images/crecque.gif">
+					  <img src="images/diablos.gif">
+					  <img src="images/ellounge.png">
+					  <img src="images/fish.gif">
+					  <img src="images/frite.gif">
+					  <img src="images/guru.gif">
+					  <img src="images/iber.gif">
+					  <img src="images/india.gif">
+					  <img src="images/j.gif">
+					  <img src="images/judinstrom.png">
+					  <img src="images/labelle.gif">
+					  <img src="images/levidence.gif">
+					  <img src="images/lobby.gif">
+					  <img src="images/loeuf.gif">
+					  <img src="images/magnolia.gif">
+					  <img src="images/manana.gif">
+					  <img src="images/mckibbins.gif">
+					  <img src="images/mirazu.gif">
+					  <img src="images/mlle.gif">
+					  <img src="images/ohana.gif">
+					  <img src="images/panzeria.gif">
+					  <img src="images/petite.gif">
+					  <img src="images/pho.gif">
+					  <img src="images/piel.canela.gif">
+					  <img src="images/piel.gif">
+					  <img src="images/pizza.gif">
+					  <img src="images/point.gif">
+					  <img src="images/pronto.png">
+					  <img src="images/ptit.gif">
+					  <img src="images/ravito.gif">
+					  <img src="images/rutba.gif">
+					  <img src="images/saint.gif">
+					  <img src="images/sandhu.gif">
+					  <img src="images/selva.gif">
+					  <img src="images/snatch.gif">
+					  <img src="images/sv.png">
+					  <img src="images/thai.gif">
+					  <img src="images/zeez.gif">
+		        </div>
             <div id="map"></div>
         </div>
     </body>
 
 	<script>
-      let currentIndex = 0;
-      function slideGallery(direction) {
-        const gallery = document.getElementById('photo-gallery');
-        const slides = gallery.querySelectorAll('.slide');
-        const slideWidth = gallery.parentElement.offsetWidth;
-        const maxIndex = slides.length - 1;
-
-        currentIndex += direction;
-        if (currentIndex < 0) currentIndex = 0;
-        if (currentIndex > maxIndex) currentIndex = maxIndex;
-
-        gallery.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-      }
+    	mapboxgl.accessToken = 'pk.eyJ1IjoiYW5nbGUta3ByIiwiYSI6ImNtZjJybG10YzFkbnUycG80N3J5cDVid2QifQ.SoIeeUn_3CNLmzU2cgtv1w';
+	        const map = new mapboxgl.Map({
+	            container: 'map', // container ID
+	            // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+	            style: 'mapbox://styles/angle-kpr/cmgz572e500bo01qrekyu4rdx', // style URL
+	            center: [-73.58257846929828, 45.53062938178555], // starting position
+	            zoom: 12 // starting zoom
+	        });   
     </script>
 
-    <script>
-      'undefined'=== typeof _trfq || (window._trfq = []);
-      'undefined'=== typeof _trfd && (window._trfd=[]),
-      _trfd.push({'tccl.baseHost':'secureserver.net'},{'ap':'cpsh-oh'},{'server':'p3plzcpnl509615'},{'dcenter':'p3'},{'cp_id':'10541863'},{'cp_cl':'8'});
-    </script>
 	<script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'},{'ap':'cpsh-oh'},{'server':'p3plzcpnl509615'},{'dcenter':'p3'},{'cp_id':'10541863'},{'cp_cl':'8'}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.</script><script src='https://img1.wsimg.com/traffic-assets/js/tccl.min.js'></script>
 </html>

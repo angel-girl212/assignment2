@@ -91,18 +91,30 @@
             float: left;
         }
 
-        /* Photo gallery */
+        /* Horizontal Photo Gallery */
         #photo-gallery {
-            padding: 20px;
-            width: 25%;
-            height: 350px;
-            margin: 20px 1%;
+            width: 90%;
+            height: 250px;
+            margin: 20px auto;
+            padding: 15px;
             background-color: white;
-            overflow-y: scroll;
-            overflow-x: hidden;
             border-radius: 8px;
-            text-align: left;
-            float: left;
+            overflow-x: auto;  /* horizontal scroll */
+            overflow-y: hidden;
+            white-space: nowrap;  /* keep images on one line */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            clear: both; /* ensures it sits below any floated elements above */
+        }
+
+        /* Image styling */
+        #photo-gallery img {
+            display: inline-block;
+            width: 200px;  /* adjust based on how many you want visible at once */
+            height: 100%;
+            margin-right: 10px;
+            border-radius: 6px;
+            object-fit: cover;
+            transition: transform 0.2s ease-in-out;
         }
 
         /* Headings */
@@ -195,7 +207,56 @@
             </div>
             <div id="photo-gallery">
               <h3>Photo Gallery</h3>
-                <!--<img src="photo1.jpg" alt="Photo 1">-->
+                <img src="images/allo.gif">
+                <img src="images/auxliles.gif">
+                <img src="images/balbastik.gif">
+                <img src="images/banquise.gif">
+                <img src="images/barranco.png">
+                <img src="images/birbante.gif">
+                <img src="images/bleu.gif">
+                <img src="images/boca.gif">
+                <img src="images/caribou.gif">
+                <img src="images/coba.gif">
+                <img src="images/coco.gif">
+                <img src="images/cout.gif">
+                <img src="images/crecque.gif">
+                <img src="images/diablos.gif">
+                <img src="images/ellounge.png">
+                <img src="images/fish.gif">
+                <img src="images/frite.gif">
+                <img src="images/guru.gif">
+                <img src="images/iber.gif">
+                <img src="images/india.gif">
+                <img src="images/j.gif">
+                <img src="images/judinstrom.png">
+                <img src="images/labelle.gif">
+                <img src="images/levidence.gif">
+                <img src="images/lobby.gif">
+                <img src="images/loeuf.gif">
+                <img src="images/magnolia.gif">
+                <img src="images/manana.gif">
+                <img src="images/mckibbins.gif">
+                <img src="images/mirazu.gif">
+                <img src="images/mlle.gif">
+                <img src="images/ohana.gif">
+                <img src="images/panzeria.gif">
+                <img src="images/petite.gif">
+                <img src="images/pho.gif">
+                <img src="images/piel.canela.gif">
+                <img src="images/piel.gif">
+                <img src="images/pizza.gif">
+                <img src="images/point.gif">
+                <img src="images/pronto.png">
+                <img src="images/ptit.gif">
+                <img src="images/ravito.gif">
+                <img src="images/rutba.gif">
+                <img src="images/saint.gif">
+                <img src="images/sandhu.gif">
+                <img src="images/selva.gif">
+                <img src="images/snatch.gif">
+                <img src="images/sv.png">
+                <img src="images/thai.gif">
+                <img src="images/zeez.gif">
             </div>
             <div id="map"></div>
         </div>

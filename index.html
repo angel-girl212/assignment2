@@ -89,29 +89,32 @@
 
           /* Inner white content box */
           #inner-page {
-				padding: 20px;
-				width: 100%; /* Changed from 25% to 100% of left column */
-				height: 400px;
-				background-color: white;
-				overflow-y: scroll;
-				overflow-x: hidden;
-				border-radius: 8px;
-				text-align: left;
-				margin: 0px; /* Remove individual margins */
-				display: block;
-				float: none;
+            padding: 20px;
+            width: 100%; /* Changed from 25% to 100% of left column */
+            height: 400px;
+            background-color: white;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            border-radius: 8px;
+            text-align: left;
+            margin: 0px; /* Remove individual margins */
+            display: block;
+            float: none;
 		  }
 	
 		  #photo-gallery {
 			  display: flex;
 			  transition: transform 0.5s ease;
-			  height: 100%;
+			  width: 100%; /* Changed from 25% to 100% of left column */
+              height: 100px;
 			  gap: 0px;
 			  align-items: center;
-			  padding: 0px;
+			  padding: 20px;
 			  margin: 0px;
 			  overflow-y: hidden;
 			  overflow-x: scroll;
+              border-radius: 8px;
+			  background-color: white;
           }
 
           #photo-gallery img {
@@ -266,7 +269,8 @@
 					  <img src="images/thai.gif">
 					  <img src="images/zeez.gif">
 		        </div>
-            	<div id="map"></div>
+			</div>
+			<div id="map"></div>
         </div>
     </body>
 

@@ -93,23 +93,16 @@
 
         /* Horizontal Photo Gallery */
         #photo-gallery {
+            clear: both;          /* ensures it's below floated elements */
+            display: block;
             width: 90%;
-            height: 250px;
             margin: 20px auto;
-            padding: 15px;
-            background-color: white;
-            border-radius: 8px;
-            overflow-x: auto;  /* horizontal scroll */
-            overflow-y: hidden;
-            white-space: nowrap;  /* keep images on one line */
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            clear: both; /* ensures it sits below any floated elements above */
         }
 
         /* Image styling */
         #photo-gallery img {
             display: inline-block;
-            width: 200px;  /* adjust based on how many you want visible at once */
+            width: 400px;  /* adjust based on how many you want visible at once */
             height: 100%;
             margin-right: 10px;
             border-radius: 6px;

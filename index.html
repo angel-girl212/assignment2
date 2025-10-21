@@ -6,162 +6,167 @@
       <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/mapbox/assembly/publisher-staging/src/svks/mapbox.svg">
       
       <style>
-        html, body { 
-          overflow: hidden;
-          width: 100%;
-          height: 100%;
-        }
-        
-        /* Overall layout */
-        body {
-          background-color: #feecdb;
-          padding: 0;
-          width: 100vw;
-          height: 100vh;
-          margin: 0;
-          font-family: "Poppins", sans-serif;
-          font-weight: 400;
-          font-style: normal;
-          text-align: center;
-        }
+          html, body { 
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+          }
 
-        /* Title section */
-        #title-block {
-          position: relative;
-          width: 100%;
-          padding: 20px 0;
-          background-color: #feecdb;
-        }
+          /* Overall layout */
+          body {
+            background-color: #feecdb;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            font-family: "Poppins", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            text-align: center;
+          }
 
-        #title-cont {
-          position: relative;
-          width: 100%;
-          margin: 0 auto;
-          text-align: center;
-        }
+          /* Title section */
+          #title-block {
+            position: relative;
+            width: 100%;
+            padding: 20px 0;
+            background-color: #feecdb;
+          }
 
-        #title-left, #title-right {
-          position: absolute;
-          top: 2px; /* adjust vertical placement */
-          background-image: url('images/logo-sm.png');
-          background-size: contain;
-          background-repeat: no-repeat;
-          height: 100px;
-          width: 100px;
-        }
+          #title-cont {
+            position: relative;
+            width: 100%;
+            margin: 0 auto;
+            text-align: center;
+          }
 
-        #title-left {
-          left: 15%;
-          transform: translateX(-50%);
-        }
+          #title-left, #title-right {
+            position: absolute;
+            top: 2px; /* adjust vertical placement */
+            background-image: url('images/logo-sm.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            height: 100px;
+            width: 100px;
+          }
 
-        #title-right {
-          left: 85%;
-          transform: translateX(-50%);
-        }
+          #title-left {
+            left: 15%;
+            transform: translateX(-50%);
+          }
 
-        /* Centered title text */
-        #title-middle {
-          text-align: center;
-          width: 100%;
-          z-index: 1;
-        }
+          #title-right {
+            left: 85%;
+            transform: translateX(-50%);
+          }
 
-        /* Page container */
-        #page-container {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
+          /* Centered title text */
+          #title-middle {
+            text-align: center;
+            width: 100%;
+            z-index: 1;
+          }
 
-        /* Inner white content box */
-        #inner-page {
+          /* Main content container - CHANGED TO FLEX ROW */
+          #page-container {
+              display: flex;
+              flex-direction: row; /* Changed from column to row */
+              align-items: flex-start;
+              width: 100%;
+              height: calc(100vh - 160px); /* Adjust based on your title height */
+              gap: 70px; /* Space between columns */
+              padding: 20px;
+              box-sizing: border-box;
+          }
+
+          /* Left column container for inner-page and photo-gallery */
+          #left-column {
+              display: flex;
+              flex-direction: column;
+              width: 25%;
+              gap: 20px;
+          }
+
+          /* Inner white content box */
+          #inner-page {
+              padding: 20px;
+              width: 100%; /* Changed from 25% to 100% of left column */
+              height: 350px;
+              background-color: white;
+              overflow-y: scroll;
+              overflow-x: hidden;
+              border-radius: 8px;
+              text-align: left;
+              margin: 20px; /* Remove individual margins */
+              display: block;
+              float: none;
+          }
+
+          /* Horizontal Photo Gallery */
+          #photo-gallery {
+              width: 100%; /* Changed from 25% to 100% of left column */
+              height: 250px;
+              padding: 15px;
+              background-color: white;
+              border-radius: 8px;
+              overflow-x: auto;
+              overflow-y: hidden;
+              white-space: nowrap;
+              box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+              margin: 20px; /* Remove individual margins */
+              display: block;
+              clear: both;
+          }
+
+          /* Image styling */
+          #photo-gallery img {
+              display: inline-block;
+              width: 400px;  /* adjust based on how many you want visible at once */
+              height: 100%;
+              margin-right: 10px;
+              border-radius: 6px;
+              object-fit: cover;
+              transition: transform 0.2s ease-in-out;
+          }
+
+          /* Headings */
+          h1, h2, h3 {
+            margin: 10px 0;
+            text-align: center;
+            padding: 0 10px;
+            color: #e41b4c;
+          }
+
+          h1 {
+            font-size: 24px;
+          }
+
+          h2 {
+            font-size: 20px;
+            font-style: italic;
+          }
+
+          /* List */
+          ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            padding: 0;
+          }
+
+          li {
+            margin: 8px 0;
+            color: #e41b4c;
+          }
+
+          /* Map container - UPDATED */
+          #map {
             padding: 20px;
-            width: 25%;
-            height: 350px;
-            margin: 20px 1%;
-            background-color: white;
-            overflow-y: scroll;
-            overflow-x: hidden;
+            width: 75%; /* Takes the remaining width */
+            height: 100%; /* Fill the full height of page-container */
             border-radius: 8px;
-            text-align: left;
-            /* Remove float: left */
-        }
-
-        /* Horizontal Photo Gallery */
-        #photo-gallery {
-            width: 25%;
-            height: 250px;
-            margin: 20px 1%; /* Match the margin of #inner-page */
-            padding: 15px;
-            background-color: white;
-            border-radius: 8px;
-            overflow-x: auto;
-            overflow-y: hidden;
-            white-space: nowrap;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            /* Remove clear: both - no longer needed */
-        }
-
-        /* Image styling */
-        #photo-gallery img {
-            display: inline-block;
-            width: 400px;  /* adjust based on how many you want visible at once */
-            height: 100%;
-            margin-right: 10px;
-            border-radius: 6px;
-            object-fit: cover;
-            transition: transform 0.2s ease-in-out;
-        }
-
-        /* Image styling */
-        #photo-gallery img {
-            display: inline-block;
-            width: 400px;  /* adjust based on how many you want visible at once */
-            height: 100%;
-            margin-right: 10px;
-            border-radius: 6px;
-            object-fit: cover;
-            transition: transform 0.2s ease-in-out;
-        }
-
-        /* Headings */
-        h1, h2, h3 {
-          margin: 10px 0;
-          text-align: center;
-          padding: 0 10px;
-          color: #e41b4c;
-        }
-
-        h1 {
-          font-size: 24px;
-        }
-
-        h2 {
-          font-size: 20px;
-          font-style: italic;
-        }
-
-        /* List */
-        ul {
-          list-style-type: disc;
-          margin-left: 20px;
-          padding: 0;
-        }
-
-        li {
-          margin: 8px 0;
-          color: #e41b4c;
-        }
-
-        /* Map container */
-        #map {
-          padding: 10px;
-          width: 75%;
-          height: 700px;
-          margin: 20px 1%;
-          border-radius: 8px;
-        }
+            background-color: #f0f0f0; /* Optional: to see the map area */
+            margin: 20px; /* Remove individual margins */
+          }
       </style>
       <link href="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css" rel="stylesheet">
       <script src="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js"></script>
@@ -184,88 +189,90 @@
               </div>
           </div>
         <div id="page-container">
-            <div id="inner-page">
-                <h3>Restaurants Plateau Mont-Royal</h3>
-                  <ul>
-                      <li>bullet point if we need it</li>
-                      <li>bullet point if we need it</li>
-                      <li>bullet point if we need it</li>
-                      <li>bullet point if we need it</li>
-                      <li>bullet point if we need it</li>
-                      <li>bullet point if we need it</li>
-                      <li>bullet point if we need it</li>
-                      <li>bullet point if we need it</li>
-                      <li>bullet point if we need it</li>
-                      <li>bullet point if we need it</li>
-                      <li>bullet point if we need it</li>
-                      <li>bullet point if we need it</li>
-                      <li>bullet point if we need it</li>
-                      <li>bullet point if we need it</li>
-                      <li>bullet point if we need it</li>
-                      <li>bullet point if we need it</li>
-                      <li>bullet point if we need it</li>
-                      <li>bullet point if we need it</li>
-                      <li>bullet point if we need it</li>
-                      <li>bullet point if we need it</li>
-                      <li>bullet point if we need it</li>
-                      <li>bullet point if we need it</li>
-                      <li>bullet point if we need it</li>
-                      <li>bullet point if we need it</li>
-                    </ul> 
-            </div>
-            <div id="photo-gallery">
-              <h3>Photo Gallery</h3>
-                <img src="images/allo.gif">
-                <img src="images/auxliles.gif">
-                <img src="images/balbastik.gif">
-                <img src="images/banquise.gif">
-                <img src="images/barranco.png">
-                <img src="images/birbante.gif">
-                <img src="images/bleu.gif">
-                <img src="images/boca.gif">
-                <img src="images/caribou.gif">
-                <img src="images/coba.gif">
-                <img src="images/coco.gif">
-                <img src="images/cout.gif">
-                <img src="images/crecque.gif">
-                <img src="images/diablos.gif">
-                <img src="images/ellounge.png">
-                <img src="images/fish.gif">
-                <img src="images/frite.gif">
-                <img src="images/guru.gif">
-                <img src="images/iber.gif">
-                <img src="images/india.gif">
-                <img src="images/j.gif">
-                <img src="images/judinstrom.png">
-                <img src="images/labelle.gif">
-                <img src="images/levidence.gif">
-                <img src="images/lobby.gif">
-                <img src="images/loeuf.gif">
-                <img src="images/magnolia.gif">
-                <img src="images/manana.gif">
-                <img src="images/mckibbins.gif">
-                <img src="images/mirazu.gif">
-                <img src="images/mlle.gif">
-                <img src="images/ohana.gif">
-                <img src="images/panzeria.gif">
-                <img src="images/petite.gif">
-                <img src="images/pho.gif">
-                <img src="images/piel.canela.gif">
-                <img src="images/piel.gif">
-                <img src="images/pizza.gif">
-                <img src="images/point.gif">
-                <img src="images/pronto.png">
-                <img src="images/ptit.gif">
-                <img src="images/ravito.gif">
-                <img src="images/rutba.gif">
-                <img src="images/saint.gif">
-                <img src="images/sandhu.gif">
-                <img src="images/selva.gif">
-                <img src="images/snatch.gif">
-                <img src="images/sv.png">
-                <img src="images/thai.gif">
-                <img src="images/zeez.gif">
-            </div>
+			<div id="left-column">        
+                <div id="inner-page">
+                    <h3>Restaurants Plateau Mont-Royal</h3>
+                      <ul>
+                          <li>bullet point if we need it</li>
+                          <li>bullet point if we need it</li>
+                          <li>bullet point if we need it</li>
+                          <li>bullet point if we need it</li>
+                          <li>bullet point if we need it</li>
+                          <li>bullet point if we need it</li>
+                          <li>bullet point if we need it</li>
+                          <li>bullet point if we need it</li>
+                          <li>bullet point if we need it</li>
+                          <li>bullet point if we need it</li>
+                          <li>bullet point if we need it</li>
+                          <li>bullet point if we need it</li>
+                          <li>bullet point if we need it</li>
+                          <li>bullet point if we need it</li>
+                          <li>bullet point if we need it</li>
+                          <li>bullet point if we need it</li>
+                          <li>bullet point if we need it</li>
+                          <li>bullet point if we need it</li>
+                          <li>bullet point if we need it</li>
+                          <li>bullet point if we need it</li>
+                          <li>bullet point if we need it</li>
+                          <li>bullet point if we need it</li>
+                          <li>bullet point if we need it</li>
+                          <li>bullet point if we need it</li>
+                        </ul> 
+                </div>
+                <div id="photo-gallery">
+                  <h3>Photo Gallery</h3>
+                    <img src="images/allo.gif">
+                    <img src="images/auxliles.gif">
+                    <img src="images/balbastik.gif">
+                    <img src="images/banquise.gif">
+                    <img src="images/barranco.png">
+                    <img src="images/birbante.gif">
+                    <img src="images/bleu.gif">
+                    <img src="images/boca.gif">
+                    <img src="images/caribou.gif">
+                    <img src="images/coba.gif">
+                    <img src="images/coco.gif">
+                    <img src="images/cout.gif">
+                    <img src="images/crecque.gif">
+                    <img src="images/diablos.gif">
+                    <img src="images/ellounge.png">
+                    <img src="images/fish.gif">
+                    <img src="images/frite.gif">
+                    <img src="images/guru.gif">
+                    <img src="images/iber.gif">
+                    <img src="images/india.gif">
+                    <img src="images/j.gif">
+                    <img src="images/judinstrom.png">
+                    <img src="images/labelle.gif">
+                    <img src="images/levidence.gif">
+                    <img src="images/lobby.gif">
+                    <img src="images/loeuf.gif">
+                    <img src="images/magnolia.gif">
+                    <img src="images/manana.gif">
+                    <img src="images/mckibbins.gif">
+                    <img src="images/mirazu.gif">
+                    <img src="images/mlle.gif">
+                    <img src="images/ohana.gif">
+                    <img src="images/panzeria.gif">
+                    <img src="images/petite.gif">
+                    <img src="images/pho.gif">
+                    <img src="images/piel.canela.gif">
+                    <img src="images/piel.gif">
+                    <img src="images/pizza.gif">
+                    <img src="images/point.gif">
+                    <img src="images/pronto.png">
+                    <img src="images/ptit.gif">
+                    <img src="images/ravito.gif">
+                    <img src="images/rutba.gif">
+                    <img src="images/saint.gif">
+                    <img src="images/sandhu.gif">
+                    <img src="images/selva.gif">
+                    <img src="images/snatch.gif">
+                    <img src="images/sv.png">
+                    <img src="images/thai.gif">
+                    <img src="images/zeez.gif">
+                </div>
+            </div>    
             <div id="map"></div>
         </div>
     </body>

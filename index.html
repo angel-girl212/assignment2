@@ -69,29 +69,29 @@
 
           /* Main content container - CHANGED TO FLEX ROW */
           #page-container {
-			display: flex;
-			flex-direction: row; /* Changed from column to row */
-			align-items: flex-start;
-			width: 100%;
-			height: calc(100vh - 160px); /* Adjust based on your title height */
-			gap: 70px; /* Space between columns */
-			padding: 20px;
-			box-sizing: border-box;
-		  }
+            display: flex;
+            flex-direction: row; /* Changed from column to row */
+            align-items: flex-start;
+            width: 100%;
+            height: calc(100vh - 160px); /* Adjust based on your title height */
+            gap: 70px; /* Space between columns */
+            padding: 20px;
+            box-sizing: border-box;
+          }
 
           /* Left column container for inner-page and photo-gallery */
           #left-column {
-			display: flex;
-			flex-direction: column;
-			width: 25%;
-			gap: 20px;
-		  }
+            display: flex;
+            flex-direction: column;
+            width: 25%;
+            gap: 20px;
+          }
 
           /* Inner white content box */
           #inner-page {
             padding: 20px;
             width: 100%; /* Changed from 25% to 100% of left column */
-            height: 400px;
+            height: 200px;
             background-color: white;
             overflow-y: scroll;
             overflow-x: hidden;
@@ -100,21 +100,21 @@
             margin: 0px; /* Remove individual margins */
             display: block;
             float: none;
-		  }
+		      }
 	
-		  #photo-gallery {
-			  display: flex;
-			  transition: transform 0.5s ease;
-			  width: 100%; /* Changed from 25% to 100% of left column */
+		      #photo-gallery {
+              display: flex;
+              transition: transform 0.5s ease;
+              width: 100%; /* Changed from 25% to 100% of left column */
               height: 100px;
-			  gap: 10px;
-			  align-items: center;
-			  padding: 20px;
-			  margin: 0px;
-			  overflow-y: hidden;
-			  overflow-x: scroll;
+              gap: 10px;
+              align-items: center;
+              padding: 20px;
+              margin: 0px;
+              overflow-y: hidden;
+              overflow-x: scroll;
               border-radius: 8px;
-			  background-color: white;
+			        background-color: white;
           }
 
           #photo-gallery img {
@@ -125,24 +125,24 @@
               flex-shrink: 0;
           }
 
-		  #average-rating {
-			  display: block;
-			  width: 100%; /* Changed from 25% to 100% of left column */
+		      #average-rating {
+              display: block;
+              width: 100%; /* Changed from 25% to 100% of left column */
               height: 100px;
-			  gap: 10px;
-			  align-items: center;
-			  padding: 20px;
-			  margin: 0px;
+              gap: 10px;
+              align-items: center;
+              padding: 20px;
+              margin: 0px;
               border-radius: 8px;
-			  background-color: white;
+			        background-color: white;
           }
 
-		  #average-rating img {
-			width: 150px; /* Adjust as needed */
-			height: auto; /* Maintain aspect ratio */
-			display: block;
-			margin: 0 auto; /* Center the image */
-		  }
+		      #average-rating img {
+              width: 150px; /* Adjust as needed */
+              height: auto; /* Maintain aspect ratio */
+              display: block;
+              margin: 0 auto; /* Center the image */
+		      }
 		  
           /* Headings */
           h1, h2, h3 {
@@ -177,7 +177,7 @@
           #map {
             padding: 20px;
             width: 75%; /* Takes the remaining width */
-            height: 700px; /* Fill the full height of page-container */
+            height: 600px; /* Fill the full height of page-container */
             border-radius: 8px;
             background-color: #f0f0f0; /* Optional: to see the map area */
             margin: 0px; /* Remove individual margins */

@@ -7,99 +7,99 @@
       
       <style>
           html, body { 
-            overflow: hidden;
-            width: 100%;
-            height: 100%;
+              overflow: hidden;
+              width: 100%;
+              height: 100%;
           }
 
           /* Overall layout */
           body {
-            background-color: #feecdb;
-            padding: 0;
-            width: 100vw;
-            height: 100vh;
-            margin: 0;
-            font-family: "Poppins", sans-serif;
-            font-weight: 400;
-            font-style: normal;
-            text-align: center;
+              background-color: #feecdb;
+              padding: 0;
+              width: 100vw;
+              height: 100vh;
+              margin: 0;
+              font-family: "Poppins", sans-serif;
+              font-weight: 400;
+              font-style: normal;
+              text-align: center;
           }
 
           /* Title section */
           #title-block {
-            position: relative;
-            width: 100%;
-            padding: 20px 0;
-            background-color: #feecdb;
+              position: relative;
+              width: 100%;
+              padding: 20px 0;
+              background-color: #feecdb;
           }
 
           #title-cont {
-            position: relative;
-            width: 100%;
-            margin: 0 auto;
-            text-align: center;
+              position: relative;
+              width: 100%;
+              margin: 0 auto;
+              text-align: center;
           }
 
           #title-left, #title-right {
-            position: absolute;
-            top: 2px; /* adjust vertical placement */
-            background-image: url('images/logo-sm.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            height: 100px;
-            width: 100px;
+              position: absolute;
+              top: 2px; /* adjust vertical placement */
+              background-image: url('images/logo-sm.png');
+              background-size: contain;
+              background-repeat: no-repeat;
+              height: 100px;
+              width: 100px;
           }
 
           #title-left {
-            left: 15%;
-            transform: translateX(-50%);
+              left: 15%;
+              transform: translateX(-50%);
           }
 
           #title-right {
-            left: 85%;
-            transform: translateX(-50%);
+              left: 85%;
+              transform: translateX(-50%);
           }
 
           /* Centered title text */
           #title-middle {
-            text-align: center;
-            width: 100%;
-            z-index: 1;
+              text-align: center;
+              width: 100%;
+              z-index: 1;
           }
 
           /* Main content container - CHANGED TO FLEX ROW */
           #page-container {
-            display: flex;
-            flex-direction: row; /* Changed from column to row */
-            align-items: flex-start;
-            width: 100%;
-            height: calc(100vh - 160px); /* Adjust based on your title height */
-            gap: 70px; /* Space between columns */
-            padding: 20px;
-            box-sizing: border-box;
+              display: flex;
+              flex-direction: row; /* Changed from column to row */
+              align-items: flex-start;
+              width: 100%;
+              height: calc(100vh - 160px); /* Adjust based on your title height */
+              gap: 70px; /* Space between columns */
+              padding: 20px;
+              box-sizing: border-box;
           }
 
           /* Left column container for inner-page and photo-gallery */
           #left-column {
-            display: flex;
-            flex-direction: column;
-            width: 25%;
-            gap: 20px;
+              display: flex;
+              flex-direction: column;
+              width: 25%;
+              gap: 20px;
           }
 
           /* Inner white content box */
           #inner-page {
-            padding: 20px;
-            width: 100%; /* Changed from 25% to 100% of left column */
-            height: 200px;
-            background-color: white;
-            overflow-y: scroll;
-            overflow-x: hidden;
-            border-radius: 8px;
-            text-align: left;
-            margin: 0px; /* Remove individual margins */
-            display: block;
-            float: none;
+              padding: 20px;
+              width: 100%; /* Changed from 25% to 100% of left column */
+              height: 300px;
+              background-color: white;
+              overflow-y: scroll;
+              overflow-x: hidden;
+              border-radius: 8px;
+              text-align: left;
+              margin: 0px; /* Remove individual margins */
+              display: block;
+              float: none;
 		      }
 	
 		      #photo-gallery {

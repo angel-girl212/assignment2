@@ -183,36 +183,22 @@
             margin: 0px; /* Remove individual margins */
           }
 
-          .mapboxgl-popup {
-            max-width: 220px;
-          }
-          
-          /* Updated marker styles for different price ranges */
           .marker {
-            /* background-image: url("images/logo-sm.png"); */
-            background-size: contain;
-            width: 30px;
-            height: 30px;
-            border-radius: 80%;
-            border: 2px solid #000;
-            transition: transform 0.1s ease, box-shadow 0.1s ease;
+            background-image: url('');
+            background-size: cover;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
           }
 
-          .marker:hover {
-            transform: scale(1.2);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+          .mapboxgl-popup {
+            max-width: 200px;
           }
-          
-          .marker-price-low {
-            background-color: rgb(228, 150, 228); /* $ */
-          }
-          
-          .marker-price-medium {
-            background-color: rgb(235, 41, 160); /* $$ */
-          }
-          
-          .marker-price-high {
-            background-color: #e41b4c; /* $$$ and above */
+
+          .mapboxgl-popup-content {
+            text-align: center;
+            font-family: 'Open Sans', sans-serif;
           }
       </style>
       <link href="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css" rel="stylesheet">
@@ -332,107 +318,1043 @@
 
 	<script>
     	mapboxgl.accessToken = 'pk.eyJ1IjoiYW5nbGUta3ByIiwiYSI6ImNtZjJybG10YzFkbnUycG80N3J5cDVid2QifQ.SoIeeUn_3CNLmzU2cgtv1w';
-	        const map = new mapboxgl.Map({
-	            container: 'map', // container ID
-	            // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-	            style: 'mapbox://styles/angle-kpr/cmgz572e500bo01qrekyu4rdx', // style URL
-	            center: [-73.58257846929828, 45.53062938178555], // starting position
-	            zoom: 13 
-	        });  
+	    const geojson = {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.59637809999998,
+                45.524437600000056
+              ]
+            },
+            "properties": {
+              "name": "Caribou Gourmand",
+              "price": "$$ & $$$",
+              "avg_price": 31.25,
+              "payment_ty": "Master Card, Visa, Interac",
+              "address": "5308 Boulevard St-Laurent, Montreal, H2T 1S1",
+              "lat": 45.5244376,
+              "long": -73.5963781,
+              "rating": 4.5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.60298529999994,
+                45.52625560000007
+              ]
+            },
+            "properties": {
+              "name": "Thailande",
+              "price": "$$",
+              "avg_price": 25,
+              "payment_ty": "Master Card, Visa, AMEX, Interac",
+              "address": "88 Avenue Bernard O, Montreal, H2T 2J8",
+              "lat": 45.5262556,
+              "long": -73.6029853,
+              "rating": 4.5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.57556909999994,
+                45.52084640000004
+              ]
+            },
+            "properties": {
+              "name": "Joséphine",
+              "price": "$$ & $$$",
+              "avg_price": 31.25,
+              "payment_ty": "Master Card, Visa, AMEX, Interac",
+              "address": "4007 Rue Saint-Denis, Montreal, H2W 2M4",
+              "lat": 45.5208464,
+              "long": -73.5755691,
+              "rating": 5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.57021139999995,
+                45.52189240000007
+              ]
+            },
+            "properties": {
+              "name": "Bistro CO ÚT",
+              "price": "$ & $$",
+              "avg_price": 17.5,
+              "payment_ty": "Master Card, Visa, AMEX, Interac",
+              "address": "3807 Rue St-André, Montreal, H2L 3V9",
+              "lat": 45.5218924,
+              "long": -73.5702114,
+              "rating": 5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.59584229999996,
+                45.52262020000006
+              ]
+            },
+            "properties": {
+              "name": "La Belle Corée",
+              "price": "$",
+              "avg_price": 10,
+              "payment_ty": "Master Card, Visa, Interac",
+              "address": "101 Avenue Fairmount O., Montreal, H2T 2M4",
+              "lat": 45.5226202,
+              "long": -73.5958423,
+              "rating": 4.5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.57701349999996,
+                45.530606000000034
+              ]
+            },
+            "properties": {
+              "name": "Sham Mont-Royal",
+              "price": "$$",
+              "avg_price": 25,
+              "payment_ty": "Master Card, Visa, AMEX, Interac, Mobile Payment, Contactless Payment",
+              "address": "1371 Avenue Mont-Royal E, Montreal, H2J 1Y8",
+              "lat": 45.530606,
+              "long": -73.5770135,
+              "rating": 5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.57514929999996,
+                45.52137080000006
+              ]
+            },
+            "properties": {
+              "name": "La Maison Grecque",
+              "price": "$$",
+              "avg_price": 25,
+              "payment_ty": "Master Card, Visa, Interac",
+              "address": "450 Avenue Duluth E, Montreal, H2L 1A5",
+              "lat": 45.5213708,
+              "long": -73.5751493,
+              "rating": 4.5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.58864819999997,
+                45.52674570000005
+              ]
+            },
+            "properties": {
+              "name": "La Petite Marche",
+              "price": "$ & $$",
+              "avg_price": 17.5,
+              "payment_ty": "Master Card, Visa, Interac",
+              "address": "5035 Rue Saint-Denis, Montreal, H2J 2L9",
+              "lat": 45.5267457,
+              "long": -73.5886482,
+              "rating": 4.5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.58626909999998,
+                45.52046520000005
+              ]
+            },
+            "properties": {
+              "name": "ZEEZ",
+              "price": "$",
+              "avg_price": 10,
+              "payment_ty": "Master Card, Visa, AMEX, Interac, Mobile Payment, Contactless Payment",
+              "address": "19 Avenue Mont-Royal E, Montreal, H2T 1N4",
+              "lat": 45.5204652,
+              "long": -73.5862691,
+              "rating": 5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.58399309999999,
+                45.524197300000026
+              ]
+            },
+            "properties": {
+              "name": "Comptoir Barranco Café Sandwicherie",
+              "price": "$",
+              "avg_price": 10,
+              "payment_ty": "Master Card, Visa, AMEX, Interac",
+              "address": "4552 Rue Saint-Denis, Montreal, H2J 2L3",
+              "lat": 45.5241973,
+              "long": -73.5839931,
+              "rating": 5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.59738959999999,
+                45.52494840000003
+              ]
+            },
+            "properties": {
+              "name": "Birbante",
+              "price": "$$ & $$$",
+              "avg_price": 31.25,
+              "payment_ty": "",
+              "address": "5386 Boulevard St-Laurent, Montreal, H2T 1S1",
+              "lat": 45.5249484,
+              "long": -73.5973896,
+              "rating": 5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.57791939999998,
+                45.52237500000007
+              ]
+            },
+            "properties": {
+              "name": "Frite Alors!",
+              "price": "$",
+              "avg_price": 10,
+              "payment_ty": "Master Card, Visa, Interac",
+              "address": "433 Rue Rachel E, Montreal, H2J 2G8",
+              "lat": 45.522375,
+              "long": -73.5779194,
+              "rating": 4.5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.57436359999997,
+                45.51990250000006
+              ]
+            },
+            "properties": {
+              "name": "Bar Judinstrom",
+              "price": "$$",
+              "avg_price": 25,
+              "payment_ty": "Master Card, Visa, AMEX, Interac, Mobile Payment, Contactless Payment",
+              "address": "3922 Rue St-Denis, Montreal, H2W 2M2",
+              "lat": 45.5199025,
+              "long": -73.5743636,
+              "rating": 5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.57467209999999,
+                45.52531170000003
+              ]
+            },
+            "properties": {
+              "name": "La Banquise",
+              "price": "$ & $$",
+              "avg_price": 17.5,
+              "payment_ty": "Interac, ATM machine",
+              "address": "994 Rue Rachel E., Montreal, H2J 2J3",
+              "lat": 45.5253117,
+              "long": -73.5746721,
+              "rating": 4.5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.57662609999994,
+                45.52086090000006
+              ]
+            },
+            "properties": {
+              "name": "La Panzeria",
+              "price": "$ & $$",
+              "avg_price": 17.5,
+              "payment_ty": "Master Card, Visa, AMEX, Interac, Mobile Payment, Contactless Payment",
+              "address": "4084 Rue Saint-Denis, Montreal, H2W 2M5",
+              "lat": 45.5208609,
+              "long": -73.5766261,
+              "rating": 5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.56933339999995,
+                45.518002300000035
+              ]
+            },
+            "properties": {
+              "name": "Restaurant Manana",
+              "price": "$",
+              "avg_price": 10,
+              "payment_ty": "Master Card, Visa, AMEX, Interac",
+              "address": "3605 Rue Saint-Denis, Montreal, H2X 3L6",
+              "lat": 45.5180023,
+              "long": -73.5693334,
+              "rating": 5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.58477909999993,
+                45.52501570000004
+              ]
+            },
+            "properties": {
+              "name": "Artigiani Pizzeria Cucina",
+              "price": "$ & $$",
+              "avg_price": 17.5,
+              "payment_ty": "Master Card, Visa, Interac",
+              "address": "4657 Rue Saint-Denis, Montreal, H2J 2L5",
+              "lat": 45.5250157,
+              "long": -73.5847791,
+              "rating": 5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.57839179999996,
+                45.52925340000007
+              ]
+            },
+            "properties": {
+              "name": "India Rosa Plateau",
+              "price": "$$ & $$$",
+              "avg_price": 31.25,
+              "payment_ty": "Master Card, Visa, AMEX, Interac, Mobile Payment, Contactless Payment",
+              "address": "1241 Avenue Mont Royal E, Montreal, H2J 1Y2",
+              "lat": 45.5292534,
+              "long": -73.5783918,
+              "rating": 5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.59705409999998,
+                45.521295000000066
+              ]
+            },
+            "properties": {
+              "name": "Balbastik",
+              "price": "$",
+              "avg_price": 10,
+              "payment_ty": "Master Card, Visa, Interac, Mobile Payment",
+              "address": "209 Avenue Fairmount O, Montreal, H2T 3E2",
+              "lat": 45.521295,
+              "long": -73.5970541,
+              "rating": 5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.59481839999995,
+                45.52413790000003
+              ]
+            },
+            "properties": {
+              "name": "Mirazu",
+              "price": "$ & $$",
+              "avg_price": 17.5,
+              "payment_ty": "Master Card, Visa, Interac",
+              "address": "5215 Boulevard St-Laurent, Montreal, H2T 1S4",
+              "lat": 45.5241379,
+              "long": -73.5948184,
+              "rating": 5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.58333429999993,
+                45.52323780000006
+              ]
+            },
+            "properties": {
+              "name": "Ohana Sushi Vegan",
+              "price": "$",
+              "avg_price": 10,
+              "payment_ty": "Master Card, Visa, Interac",
+              "address": "330 Avenue Mont-Royal E, Montreal, H2T 1P8",
+              "lat": 45.5232378,
+              "long": -73.5833343,
+              "rating": 5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.57429799999994,
+                45.52263500000004
+              ]
+            },
+            "properties": {
+              "name": "Le RAVITO Café-Buvette",
+              "price": "$ & $$",
+              "avg_price": 17.5,
+              "payment_ty": "",
+              "address": "4051 Rue St-Hubert, Montreal, H2L 4A7",
+              "lat": 45.522635,
+              "long": -73.574298,
+              "rating": 4.5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.56870459999993,
+                45.51726720000005
+              ]
+            },
+            "properties": {
+              "name": "Bistro GURU",
+              "price": "$$ & $$$",
+              "avg_price": 31.25,
+              "payment_ty": "#REF!",
+              "address": "3464 Rue Saint-Denis, Montreal, H2X 3L3",
+              "lat": 45.5172672,
+              "long": -73.5687046,
+              "rating": 5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.59110999999996,
+                45.522149400000046
+              ]
+            },
+            "properties": {
+              "name": "Pamika Thai",
+              "price": "$$",
+              "avg_price": 25,
+              "payment_ty": "",
+              "address": "4902 Boulevard St-Laurent, Montreal, H2T 1R5",
+              "lat": 45.5221494,
+              "long": -73.59111,
+              "rating": 4.5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.58177249999994,
+                45.517576000000076
+              ]
+            },
+            "properties": {
+              "name": "BOCA Iberica",
+              "price": "$$",
+              "avg_price": 25,
+              "payment_ty": "Master Card, Visa, AMEX, Interac",
+              "address": "12 Rue Rachel O, Montreal, H2W 1G1",
+              "lat": 45.517576,
+              "long": -73.5817725,
+              "rating": 5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.60283159999994,
+                45.522282000000075
+              ]
+            },
+            "properties": {
+              "name": "Aux Lilas",
+              "price": "$ & $$",
+              "avg_price": 17.5,
+              "payment_ty": "Master Card, Visa, Interac",
+              "address": "5570 Avenue du Parc, Montreal, H2V 4H1",
+              "lat": 45.522282,
+              "long": -73.6028316,
+              "rating": 5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.56563139999997,
+                45.516237200000035
+              ]
+            },
+            "properties": {
+              "name": "Point Bar",
+              "price": "$ & $$",
+              "avg_price": 17.5,
+              "payment_ty": "Master Card, Visa, AMEX, Interac, Mobile Payment, Contactless Payment",
+              "address": "2017 Rue St-Denis, Montreal, H2X 3K8",
+              "lat": 45.5162372,
+              "long": -73.5656314,
+              "rating": 4
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.57535679999995,
+                45.521117600000025
+              ]
+            },
+            "properties": {
+              "name": "Saint Sushi",
+              "price": "$$",
+              "avg_price": 25,
+              "payment_ty": "Master Card, Visa, AMEX, Interac",
+              "address": "424 Avenue Duluth E, Montreal, H2W 2M3",
+              "lat": 45.5211176,
+              "long": -73.5753568,
+              "rating": 5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.57184559999996,
+                45.51448760000005
+              ]
+            },
+            "properties": {
+              "name": "Resto Bar Nemo",
+              "price": "$ & $$",
+              "avg_price": 17.5,
+              "payment_ty": "Master Card, Visa, AMEX, Interac, Mobile Payment, Contactless Payment",
+              "address": "64 Rue Prince-Arthur E, Montreal, H2X 1B3",
+              "lat": 45.5144876,
+              "long": -73.5718456,
+              "rating": 5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.57110199999994,
+                45.51349920000007
+              ]
+            },
+            "properties": {
+              "name": "McKibbins Irish Pub",
+              "price": "$",
+              "avg_price": 10,
+              "payment_ty": "Master Card, Visa, AMEX, Interac, ATM machine",
+              "address": "3515 Boulevard St Laurent, Montreal, H2X 2T6",
+              "lat": 45.5134992,
+              "long": -73.571102,
+              "rating": 4.5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.57316509999998,
+                45.514377800000034
+              ]
+            },
+            "properties": {
+              "name": "Rutba",
+              "price": "$$",
+              "avg_price": 25,
+              "payment_ty": "",
+              "address": "3633 Boulevard St-Laurent, Montreal, H2X 2V5",
+              "lat": 45.5143778,
+              "long": -73.5731651,
+              "rating": 5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.56443659999996,
+                45.515751100000045
+              ]
+            },
+            "properties": {
+              "name": "El Lounge Resto-Bar",
+              "price": "$$ & $$$",
+              "avg_price": 31.25,
+              "payment_ty": "Master Card, Visa, AMEX, Interac, Mobile Payment, Contactless Payment",
+              "address": "1735 Saint Denis St, Montreal, Quebec H2X 3K4",
+              "lat": 45.5157511,
+              "long": -73.5644366,
+              "rating": 5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.57840269999997,
+                45.529237600000044
+              ]
+            },
+            "properties": {
+              "name": "Mlle Rosa",
+              "price": "$$ & $$$",
+              "avg_price": 31.25,
+              "payment_ty": "",
+              "address": "1233 Avenue Mont-Royal E, Montreal, H2J 1Y2",
+              "lat": 45.5292376,
+              "long": -73.5784027,
+              "rating": 4.5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.57284769999995,
+                45.519633800000065
+              ]
+            },
+            "properties": {
+              "name": "L'Évidence",
+              "price": "$",
+              "avg_price": 10,
+              "payment_ty": "Master Card, Visa, Interac",
+              "address": "3817 Rue Saint-Denis, Montreal, H2W 2M4",
+              "lat": 45.5196338,
+              "long": -73.5728477,
+              "rating": 4.5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.57557429999997,
+                45.53316720000004
+              ]
+            },
+            "properties": {
+              "name": "Sandhu",
+              "price": "$$",
+              "avg_price": 25,
+              "payment_ty": "Master Card, Visa, AMEX, Interac, ATM machine",
+              "address": "4548 Avenue Papineau, Montreal, H2H 1V3",
+              "lat": 45.5331672,
+              "long": -73.5755743,
+              "rating": 4.5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.58912539999994,
+                45.52152730000006
+              ]
+            },
+            "properties": {
+              "name": "Snatch Restaurant",
+              "price": "$",
+              "avg_price": 10,
+              "payment_ty": "Master Card, Visa, AMEX, Interac",
+              "address": "4675 Boulevard St-Laurent, Montreal, H2T 1R2",
+              "lat": 45.5215273,
+              "long": -73.5891254,
+              "rating": 5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.58482919999994,
+                45.52211680000005
+              ]
+            },
+            "properties": {
+              "name": "Café buvette Magnolia",
+              "price": "$$",
+              "avg_price": 25,
+              "payment_ty": "Master Card, Visa, AMEX, Interac, Mobile Payment, Contactless Payment",
+              "address": "187 Avenue Mont-Royal E, Montreal, H2T 1P2",
+              "lat": 45.5221168,
+              "long": -73.5848292,
+              "rating": 4.5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.57817039999998,
+                45.52519270000005
+              ]
+            },
+            "properties": {
+              "name": "La Selva Restaurant Mexicain",
+              "price": "$",
+              "avg_price": 10,
+              "payment_ty": "Master Card, Visa, AMEX, Interac",
+              "address": "862 Rue Marie-Anne E, Montreal, H2J 2A9",
+              "lat": 45.5251927,
+              "long": -73.5781704,
+              "rating": 5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.58234129999994,
+                45.523935100000074
+              ]
+            },
+            "properties": {
+              "name": "Ibéricos Taverne à Tapas Espagnoles",
+              "price": "$ & $$",
+              "avg_price": 17.5,
+              "payment_ty": "",
+              "address": "4475 Rue Saint-Denis, Montreal, H2J 2L2",
+              "lat": 45.5239351,
+              "long": -73.5823413,
+              "rating": 4.5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.58102669999994,
+                45.522214200000064
+              ]
+            },
+            "properties": {
+              "name": "Le P'tit Plateau",
+              "price": "$$",
+              "avg_price": 25,
+              "payment_ty": "Master Card, Visa, AMEX, Interac",
+              "address": "330 Rue Marie-Anne E, Montreal, H2W 1B1",
+              "lat": 45.5222142,
+              "long": -73.5810267,
+              "rating": 5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.57644299999998,
+                45.531138300000066
+              ]
+            },
+            "properties": {
+              "name": "Pho Mont-Royal",
+              "price": "$",
+              "avg_price": 10,
+              "payment_ty": "Master Card, Visa, Interac",
+              "address": "1459 Avenue Mont-Royal, Montreal, H2J 1Y9",
+              "lat": 45.5311383,
+              "long": -73.576443,
+              "rating": 5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.57240699999994,
+                45.51433910000003
+              ]
+            },
+            "properties": {
+              "name": "Diablos BBQ Smokehouse",
+              "price": "$$ & $$$",
+              "avg_price": 31.25,
+              "payment_ty": "Master Card, Visa, Interac",
+              "address": "17 Rue Prince-Arthur E, Montreal, H2X 1B2",
+              "lat": 45.5143391,
+              "long": -73.572407,
+              "rating": 4.5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.57301479999995,
+                45.53486460000005
+              ]
+            },
+            "properties": {
+              "name": "L'Oeufrier",
+              "price": "$",
+              "avg_price": 10,
+              "payment_ty": "",
+              "address": "2017 Avenue du Mont-Royal E, Montreal, H2H 1J7",
+              "lat": 45.5348646,
+              "long": -73.5730148,
+              "rating": 4.5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.59125969999997,
+                45.52800210000004
+              ]
+            },
+            "properties": {
+              "name": "Le Bleu Raisin",
+              "price": "$$$",
+              "avg_price": 37.5,
+              "payment_ty": "Master Card, Visa, Interac",
+              "address": "5237 Rue Saint-Denis, Montreal, H2J 2M1",
+              "lat": 45.5280021,
+              "long": -73.5912597,
+              "rating": 5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.58375259999997,
+                45.52418860000006
+              ]
+            },
+            "properties": {
+              "name": "Piel Canela",
+              "price": "$$ & $$$",
+              "avg_price": 31.25,
+              "payment_ty": "Master Card, Visa, AMEX, Interac, Mobile Payment, Contactless Payment",
+              "address": "4542 Rue St-Denis, Montreal, H2J 2L3",
+              "lat": 45.5241886,
+              "long": -73.5837526,
+              "rating": 5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.57291349999997,
+                45.53497160000006
+              ]
+            },
+            "properties": {
+              "name": "Cuisine Pronto MTL",
+              "price": "$",
+              "avg_price": 10,
+              "payment_ty": "Master Card, Visa, AMEX, Interac, Mobile Payment, Contactless Payment",
+              "address": "2025 Avenue Mont-Royal E, Montreal, H2H 1J7",
+              "lat": 45.5349716,
+              "long": -73.5729135,
+              "rating": 4.5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.57766519999996,
+                45.51645840000003
+              ]
+            },
+            "properties": {
+              "name": "Rôtisserie Coco Rico",
+              "price": "$ & $$",
+              "avg_price": 17.5,
+              "payment_ty": "Master Card, Visa, AMEX, Interac, Mobile Payment, Contactless Payment",
+              "address": "3907 Boulevard St-Laurent, Montreal, H2W 1X9",
+              "lat": 45.5164584,
+              "long": -73.5776652,
+              "rating": 4.5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.59781149999998,
+                45.51707730000004
+              ]
+            },
+            "properties": {
+              "name": "Côba Sushi",
+              "price": "$$ & $$$",
+              "avg_price": 31.25,
+              "payment_ty": "Master Card, Visa, AMEX, Interac",
+              "address": "1124 Avenue Laurier O, Montreal, H2V 2L4",
+              "lat": 45.5170773,
+              "long": -73.5978115,
+              "rating": 5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.58614029999995,
+                45.51986610000006
+              ]
+            },
+            "properties": {
+              "name": "Allô mon Coco",
+              "price": "",
+              "avg_price": 0,
+              "payment_ty": "#N/A",
+              "address": "4448 Boulevard St-Laurent, Montreal, H2W 1Z5",
+              "lat": 45.5198661,
+              "long": -73.5861403,
+              "rating": 4.5
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.57549849999998,
+                45.53311820000005
+              ]
+            },
+            "properties": {
+              "name": "Lobby Bar - Espace Locatif",
+              "price": "",
+              "avg_price": 25,
+              "payment_ty": "Master Card, Visa, AMEX, Interac, ATM machine",
+              "address": "4538 Rue Papineau, Montreal, H2H 1V3",
+              "lat": 45.5331182,
+              "long": -73.5754985,
+              "rating": 4.5
+            }
+          }
+        ]
+      }
           
-          // Function to determine marker class based on price range
-          function getMarkerClass(Price_Rang) {
-              if (!Price_Rang) return 'marker marker-price-high';
-              
-              if (Price_Rang.includes('$') && !Price_Rang.includes('$$')) {
-                  return 'marker marker-price-low'; // Single $ only
-              } else if (Price_Rang === '$$' || Price_Rang === '$ & $$') {
-                  return 'marker marker-price-medium'; // Exactly $$ or $ & $$
-              } else {
-                  return 'marker marker-price-high'; // $$ & $$$ or anything else
-              }
-          }
-
-          // Function to get simplified price label for display
-          function getPriceLabel(priceRange) {
-              if (!priceRange) return 'Unknown';
-              if (priceRange.includes('$') && !priceRange.includes('$$')) return '$';
-              if (priceRange === '$$' || priceRange === '$ & $$') return '$$';
-              return '$$$';
-          }
-
-          // Function to load and process GeoJSON data
-          function loadGeoJSONData() {
-              fetch('geoparsed.geojson')
-                  .then(response => {
-                      if (!response.ok) {
-                          throw new Error('Network response was not ok');
-                      }
-                      return response.json();
-                  })
-
-                  .then(geojson => {
-                    // Filter out features with null geometry and process valid ones
-                    const validFeatures = geojson.features.filter(feature => 
-                        feature.geometry && 
-                        feature.geometry.coordinates && 
-                        feature.geometry.coordinates[0] !== 0 && 
-                        feature.geometry.coordinates[1] !== 0
-                    );
-                    
-                    console.log('Valid features found:', validFeatures.length);
-
-                    // Wait for the map to load before adding markers
-                    map.on('load', () => {
-                        addMarkersToMap(validFeatures);
-                    });
-                    
-                  .catch(error => {
-                      console.error('Error loading GeoJSON file:', error);
-                      // Fallback: if file can't be loaded, use empty array
-                     if (map.loaded()) {
-                        addMarkersToMap([]);
-                    } else {
-                        map.on('load', () => {
-                            addMarkersToMap([]);
-                        });
-                    }
-                });
-        }
+      const map = new mapboxgl.Map({
+          container: 'map', // container ID
+          // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+          style: 'mapbox://styles/angle-kpr/cmgz572e500bo01qrekyu4rdx', // style URL
+          center: [-73.58257846929828, 45.53062938178555], // starting position
+          zoom: 13 
+      }); 
+      
+      // add markers to map
+      for (const feature of geojson.features) {
+        // create a HTML element for each feature
+        const el = document.createElement('div');
+        el.className = 'marker';
         
-        // Function to add markers to the map
-        function addMarkersToMap(features) {
-            features.forEach(feature => {
-                // Create a HTML element for each feature
-                const el = document.createElement('div');
-                
-                // Get price range from properties
-                const priceRange = feature.properties.Price_Rang || '';
-                const priceLabel = getPriceLabel(priceRange);
-                
-                // Set marker class based on price range
-                el.className = getMarkerClass(priceRange);
-                
-                // Create popup content
-                const popupContent = `
-                    <h3>${feature.properties.Restaurant || 'Untitled'}</h3>
-                    <p><strong>Price Range:</strong> ${priceLabel}</p>
-                    <p><strong>Address:</strong> ${feature.properties.Address || 'N/A'}</p>
-                `;
-                
-                // Make a marker for each feature and add it to the map
-                new mapboxgl.Marker(el)
-                    .setLngLat(feature.geometry.coordinates)
-                    .setPopup(
-                        new mapboxgl.Popup({ offset: 25 })
-                            .setHTML(popupContent)
-                    )
-                    .addTo(map);
-            });
-        }    
+        if (feature.properties.rating === 5) {
+          el.style.backgroundImage = "url('images/star.png')";
+        } else if (feature.properties.rating === 4.5) {
+          el.style.backgroundImage = "url('images/halfstar.png')";
+        }
 
-    loadGeoJSONData();
-
+        // make a marker for each feature and add it to the map
+        new mapboxgl.Marker(el)
+          .setLngLat(feature.geometry.coordinates)
+          .setPopup(
+            new mapboxgl.Popup({ offset: 25 }) // add popups
+              .setHTML(
+                `<h3>${feature.properties.name}</h3><p>${feature.properties.address}</p><p>${feature.properties.price}</p>`
+              )
+          )
+          .addTo(map);
+      }
     </script>
 
 	<script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'},{'ap':'cpsh-oh'},{'server':'p3plzcpnl509615'},{'dcenter':'p3'},{'cp_id':'10541863'},{'cp_cl':'8'}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.</script><script src='https://img1.wsimg.com/traffic-assets/js/tccl.min.js'></script>

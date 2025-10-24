@@ -182,6 +182,39 @@
             background-color: #f0f0f0; /* Optional: to see the map area */
             margin: 0px; /* Remove individual margins */
           }
+
+          .mapboxgl-popup {
+            max-width: 220px;
+          }
+          
+          /* Updated marker styles for different price ranges */
+          .marker {
+            background-size: contain;
+            width: 30px;
+            height: 30px;
+            animation: pulse 2s infinite;
+            border-radius: 80%;
+            border: 2px solid #000;
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
+          }
+          
+          .marker-price-low {
+            background-color: rgb(228, 150, 228); /* $ */
+          }
+          
+          .marker-price-medium {
+            background-color: rgb(235, 41, 160); /* $$ */
+          }
+          
+          .marker-price-high {
+            background-color: #e41b4c; /* $$$ and above */
+          }
+          
+          @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+          }
       </style>
       <link href="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css" rel="stylesheet">
       <script src="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js"></script>
@@ -238,7 +271,7 @@
 		            <h3>Photo Gallery</h3>
 					  <!-- Image slides -->
 			            <img src="images/angelcat.png">  <!---just for fun <3 -->
-					    <img src="images/allo.gif">  
+					        <img src="images/allo.gif">  
 			            <img src="images/auxliles.gif">  
 			            <img src="images/balbastik.gif">  
 			            <img src="images/banquise.gif">  
@@ -291,7 +324,7 @@
 		        </div>
 				<div id="average-rating">
 					<h3>Average Rating</h3>
-                		<img src="images/4_stars.svg">
+                		<img src="images/4_stars.svg"> <!---change-->
                 </div>  
 			</div>
 			<div id="map"></div>
@@ -305,8 +338,76 @@
 	            // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
 	            style: 'mapbox://styles/angle-kpr/cmgz572e500bo01qrekyu4rdx', // style URL
 	            center: [-73.58257846929828, 45.53062938178555], // starting position
-	            zoom: 12 // starting zoom
-	        });   
+	            zoom: 13 
+	        });  
+          
+          // Function to determine marker class based on price range
+          function getMarkerClass(Price_Rang) {
+              if (Price_Rang === '$') {
+                  return 'marker marker-price-low';
+              } else if (Price_Rang === '$$') {
+                  return 'marker marker-price-medium';
+              } else {
+                  return 'marker marker-price-high';
+              }
+          }
+
+          // Function to load and process GeoJSON data
+          function loadGeoJSONData() {
+              fetch('geoparsed.geojson')
+                  .then(response => {
+                      if (!response.ok) {
+                          throw new Error('Network response was not ok');
+                      }
+                      return response.json();
+                  })
+                  .then(geojson => {
+                      // Wait for the map to load before adding markers
+                      map.on('load', () => {
+                          addMarkersToMap(geojson);
+                      });
+                  })
+                  .catch(error => {
+                      console.error('Error loading GeoJSON file:', error);
+                      // Fallback: if file can't be loaded, use empty geojson
+                      map.on('load', () => {
+                          addMarkersToMap({type: 'FeatureCollection', features: []});
+                      });
+                  });
+          }
+
+          // Function to add markers to the map
+          function addMarkersToMap(geojson) {
+              for (const feature of geojson.features) {
+                  // Create a HTML element for each feature
+                  const el = document.createElement('div');
+                  
+                  // Get price range from properties (assuming it's stored in a property like 'price' or 'price_range')
+                  const priceRange = feature.properties.Price_Rang || '$$$';
+                  
+                  // Set marker class based on price range
+                  el.className = getMarkerClass(Price_Rang);
+                  
+                  // Create popup content
+                  const popupContent = `
+                      <h3>${feature.properties.Restaurant || 'Untitled'}</h3>
+                      <p><strong>Price:</strong> ${priceRange}</p>
+                      ${feature.properties.Address ? `<p>${feature.properties.Address}</p>` : ''}
+                  `;
+
+                  // Make a marker for each feature and add it to the map
+                  new mapboxgl.Marker(el)
+                      .setLngLat(feature.geometry.coordinates)
+                      .setPopup(
+                          new mapboxgl.Popup({ offset: 25 })
+                              .setHTML(popupContent)
+                      )
+                      .addTo(map);
+              }
+          }
+          
+          // Load the GeoJSON data when the script runs
+          loadGeoJSONData();
     </script>
 
 	<script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'},{'ap':'cpsh-oh'},{'server':'p3plzcpnl509615'},{'dcenter':'p3'},{'cp_id':'10541863'},{'cp_cl':'8'}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.</script><script src='https://img1.wsimg.com/traffic-assets/js/tccl.min.js'></script>

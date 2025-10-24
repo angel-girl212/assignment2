@@ -189,13 +189,18 @@
           
           /* Updated marker styles for different price ranges */
           .marker {
+            /* background-image: url("images/logo-sm.png"); */
             background-size: contain;
             width: 30px;
             height: 30px;
-            animation: pulse 2s infinite;
             border-radius: 80%;
             border: 2px solid #000;
             transition: transform 0.1s ease, box-shadow 0.1s ease;
+          }
+
+          .marker:hover {
+            transform: scale(1.2);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.4);
           }
           
           .marker-price-low {
@@ -208,12 +213,6 @@
           
           .marker-price-high {
             background-color: #e41b4c; /* $$$ and above */
-          }
-          
-          @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
           }
       </style>
       <link href="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css" rel="stylesheet">
@@ -343,13 +342,23 @@
           
           // Function to determine marker class based on price range
           function getMarkerClass(Price_Rang) {
-              if (Price_Rang === '$') {
-                  return 'marker marker-price-low';
-              } else if (Price_Rang === '$$') {
-                  return 'marker marker-price-medium';
+              if (!Price_Rang) return 'marker marker-price-high';
+              
+              if (Price_Rang.includes('$') && !Price_Rang.includes('$$')) {
+                  return 'marker marker-price-low'; // Single $ only
+              } else if (Price_Rang === '$$' || Price_Rang === '$ & $$') {
+                  return 'marker marker-price-medium'; // Exactly $$ or $ & $$
               } else {
-                  return 'marker marker-price-high';
+                  return 'marker marker-price-high'; // $$ & $$$ or anything else
               }
+          }
+
+          // Function to get simplified price label for display
+          function getPriceLabel(priceRange) {
+              if (!priceRange) return 'Unknown';
+              if (priceRange.includes('$') && !priceRange.includes('$$')) return '$';
+              if (priceRange === '$$' || priceRange === '$ & $$') return '$$';
+              return '$$$';
           }
 
           // Function to load and process GeoJSON data
@@ -361,53 +370,69 @@
                       }
                       return response.json();
                   })
+
                   .then(geojson => {
-                      // Wait for the map to load before adding markers
-                      map.on('load', () => {
-                          addMarkersToMap(geojson);
-                      });
-                  })
+                    // Filter out features with null geometry and process valid ones
+                    const validFeatures = geojson.features.filter(feature => 
+                        feature.geometry && 
+                        feature.geometry.coordinates && 
+                        feature.geometry.coordinates[0] !== 0 && 
+                        feature.geometry.coordinates[1] !== 0
+                    );
+                    
+                    console.log('Valid features found:', validFeatures.length);
+
+                    // Wait for the map to load before adding markers
+                    map.on('load', () => {
+                        addMarkersToMap(validFeatures);
+                    });
+                    
                   .catch(error => {
                       console.error('Error loading GeoJSON file:', error);
-                      // Fallback: if file can't be loaded, use empty geojson
-                      map.on('load', () => {
-                          addMarkersToMap({type: 'FeatureCollection', features: []});
-                      });
-                  });
-          }
+                      // Fallback: if file can't be loaded, use empty array
+                     if (map.loaded()) {
+                        addMarkersToMap([]);
+                    } else {
+                        map.on('load', () => {
+                            addMarkersToMap([]);
+                        });
+                    }
+                });
+        }
+        
+        // Function to add markers to the map
+        function addMarkersToMap(features) {
+            features.forEach(feature => {
+                // Create a HTML element for each feature
+                const el = document.createElement('div');
+                
+                // Get price range from properties
+                const priceRange = feature.properties.Price_Rang || '';
+                const priceLabel = getPriceLabel(priceRange);
+                
+                // Set marker class based on price range
+                el.className = getMarkerClass(priceRange);
+                
+                // Create popup content
+                const popupContent = `
+                    <h3>${feature.properties.Restaurant || 'Untitled'}</h3>
+                    <p><strong>Price Range:</strong> ${priceLabel}</p>
+                    <p><strong>Address:</strong> ${feature.properties.Address || 'N/A'}</p>
+                `;
+                
+                // Make a marker for each feature and add it to the map
+                new mapboxgl.Marker(el)
+                    .setLngLat(feature.geometry.coordinates)
+                    .setPopup(
+                        new mapboxgl.Popup({ offset: 25 })
+                            .setHTML(popupContent)
+                    )
+                    .addTo(map);
+            });
+        }    
 
-          // Function to add markers to the map
-          function addMarkersToMap(geojson) {
-              for (const feature of geojson.features) {
-                  // Create a HTML element for each feature
-                  const el = document.createElement('div');
-                  
-                  // Get price range from properties (assuming it's stored in a property like 'price' or 'price_range')
-                  const priceRange = feature.properties.Price_Rang || '$$$';
-                  
-                  // Set marker class based on price range
-                  el.className = getMarkerClass(Price_Rang);
-                  
-                  // Create popup content
-                  const popupContent = `
-                      <h3>${feature.properties.Restaurant || 'Untitled'}</h3>
-                      <p><strong>Price:</strong> ${priceRange}</p>
-                      ${feature.properties.Address ? `<p>${feature.properties.Address}</p>` : ''}
-                  `;
+    loadGeoJSONData();
 
-                  // Make a marker for each feature and add it to the map
-                  new mapboxgl.Marker(el)
-                      .setLngLat(feature.geometry.coordinates)
-                      .setPopup(
-                          new mapboxgl.Popup({ offset: 25 })
-                              .setHTML(popupContent)
-                      )
-                      .addTo(map);
-              }
-          }
-          
-          // Load the GeoJSON data when the script runs
-          loadGeoJSONData();
     </script>
 
 	<script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'},{'ap':'cpsh-oh'},{'server':'p3plzcpnl509615'},{'dcenter':'p3'},{'cp_id':'10541863'},{'cp_cl':'8'}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.</script><script src='https://img1.wsimg.com/traffic-assets/js/tccl.min.js'></script>

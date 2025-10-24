@@ -3,16 +3,19 @@
     <!--HEAD - section of your website adds libraries, style and site settings-->
     <head>
       <title>Assignment 2</title>
+      <!-- Favicon for browser tab -->
       <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/mapbox/assembly/publisher-staging/src/svks/mapbox.svg">
       
+      <!-- CSS STYLES: Defines the visual appearance of all page elements -->
       <style>
+          /* Prevent scrolling and ensure full viewport coverage */
           html, body { 
               overflow: hidden;
               width: 100%;
               height: 100%;
           }
 
-          /* Overall layout */
+          /* Overall page styling */
           body {
               background-color: #feecdb;
               padding: 0;
@@ -25,7 +28,7 @@
               text-align: center;
           }
 
-          /* Title section */
+          /* Title section at top of page */
           #title-block {
               position: relative;
               width: 100%;
@@ -33,6 +36,7 @@
               background-color: #feecdb;
           }
 
+          /* Container for title elements */
           #title-cont {
               position: relative;
               width: 100%;
@@ -40,6 +44,7 @@
               text-align: center;
           }
 
+          /* Left and right decorative logos for the scraped restaurant site*/
           #title-left, #title-right {
               position: absolute;
               top: 2px; /* adjust vertical placement */
@@ -50,24 +55,26 @@
               width: 100px;
           }
 
+          /* Position left logo */
           #title-left {
               left: 15%;
               transform: translateX(-50%);
           }
 
+          /* Position right logo */
           #title-right {
               left: 85%;
               transform: translateX(-50%);
           }
 
-          /* Centered title text */
+          /* Centered title text area*/
           #title-middle {
               text-align: center;
               width: 100%;
               z-index: 1;
           }
 
-          /* Main content container - CHANGED TO FLEX ROW */
+          /* MAIN LAYOUT: Flex container for side-by-side content */
           #page-container {
               display: flex;
               flex-direction: row; /* Changed from column to row */
@@ -79,7 +86,7 @@
               box-sizing: border-box;
           }
 
-          /* Left column container for inner-page and photo-gallery */
+          /* LEFT COLUMN: Contains restaurant list, gallery, and rating pictograph (decorative) */
           #left-column {
               display: flex;
               flex-direction: column;
@@ -87,32 +94,33 @@
               gap: 20px;
           }
 
-          /* Inner white content box */
+          /* Restaurant directory list box */
           #inner-page {
               padding: 20px;
-              width: 100%; /* Changed from 25% to 100% of left column */
+              width: 100%; /* full width of left column */
               height: 300px;
               background-color: white;
-              overflow-y: scroll;
+              overflow-y: scroll; /* Enable vertical scrolling */
               overflow-x: hidden;
               border-radius: 8px;
               text-align: left;
-              margin: 0px; /* Remove individual margins */
+              margin: 0px;
               display: block;
               float: none;
 		      }
 	
+          /* Horizontal photo gallery */
 		      #photo-gallery {
               display: flex;
               transition: transform 0.5s ease;
-              width: 100%; /* Changed from 25% to 100% of left column */
+              width: 100%; 
               height: 100px;
               gap: 10px;
               align-items: center;
               padding: 20px;
               margin: 0px;
               overflow-y: hidden;
-              overflow-x: scroll;
+              overflow-x: scroll; /* Enable horizontal scrolling */
               border-radius: 8px;
 			        background-color: white;
           }
@@ -125,9 +133,10 @@
               flex-shrink: 0;
           }
 
+          /* Average rating display area */
 		      #average-rating {
               display: block;
-              width: 100%; /* Changed from 25% to 100% of left column */
+              width: 100%; 
               height: 80px;
               gap: 10px;
               align-items: center;
@@ -138,18 +147,18 @@
           }
 
 		      #average-rating img {
-              width: 150px; /* Adjust as needed */
-              height: 50px; /* Maintain aspect ratio */
+              width: 150px; 
+              height: 50px;
               display: block;
-              margin: 0 auto; /* Center the image */
+              margin: 0px; 
 		      }
 		  
-          /* Headings */
+          /* Text styling for headings */
           h1, h2, h3 {
             margin: 10px 0;
             text-align: center;
             padding: 0 10px;
-            color: #e41b4c;
+            color: #e41b4c; /* Pink/red color theme */
           }
 
           h1 {
@@ -161,7 +170,7 @@
             font-style: italic;
           }
 
-          /* List */
+          /* Restaurant list styling */
           ul {
             list-style-type: disc;
             margin-left: 20px;
@@ -173,25 +182,27 @@
             color: #e41b4c;
           }
 
-          /* Map container - UPDATED */
+          /* MAP CONTAINER: Takes up left side of page width */
           #map {
             padding: 20px;
-            width: 75%; /* Takes the remaining width */
-            height: 600px; /* Fill the full height of page-container */
+            width: 75%; 
+            height: 600px; 
             border-radius: 8px;
-            background-color: #f0f0f0; /* Optional: to see the map area */
-            margin: 0px; /* Remove individual margins */
+            background-color: #f0f0f0; /* backup container*/
+            margin: 0px;
           }
 
+          /* Custom marker styling for map points */
           .marker {
-            background-image: url('');
+            background-image: url(''); /* empty to allow conditional iconography */
             background-size: cover;
             width: 30px;
             height: 30px;
             border-radius: 50%;
             cursor: pointer;
           }
-
+ 
+          /* Simple popup styling for map markers */
           .mapboxgl-popup {
             max-width: 200px;
           }
@@ -201,33 +212,43 @@
             font-family: 'Open Sans', sans-serif;
           }
       </style>
+
+      <!-- Mapbox GL JS library for interactive maps -->
       <link href="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css" rel="stylesheet">
       <script src="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js"></script>
 
-  <!--Load Google Fonts-->
+      <!--Load Google Fonts-->
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;900&display=swap" rel="stylesheet">
-    </head>  
+    </head> 
+    
+    <!-- BODY SECTION: Contains all visible page content -->
     <body>
+          <!-- HEADER SECTION: Title and group information -->
           <div id="title-block">
               <div id="title-cont">
-                <div id="title-left"></div>
+                <div id="title-left"></div> <!-- Left decorative logo -->
                 <div id="title-middle">
-                  <!--H1 is a header. large text with some padding above and below-->
+                  <!-- Main page title and subtitle -->
                   <h1>Assignment 2: Web Scraping with Google Spreadsheet and XPath</h1>
                   <h2>Group 3: Kyra, Ben, Jack</h2>
                 </div>
-                <div id="title-right"></div>
+                <div id="title-right"></div> <!-- Right decorative logo -->
               </div>
           </div>
+
+        <!-- MAIN CONTENT AREA: Two-column layout -->  
         <div id="page-container">
-			<div id="left-column">        
+        <!-- LEFT COLUMN: Restaurant information and media -->
+			  <div id="left-column">   
+                <!-- RESTAURANT DIRECTORY: Scrollable list of restaurants -->     
                 <div id="inner-page">
                     <h3>Restaurants Plateau Mont-Royal</h3>
                     <h2>Directory!</h2>
                     <p>From Allo to Zeez, explore the vibrant restaurant scene sur le Plateau Mont-Royal through our interactive map.</p>
                       <ul>
+                          <!-- Restaurant links list from scraped google sheet -->
                           <li><a href="https://www.restomontreal.ca/resto/caribou-gourmand-montreal/10879/en/" target="_new">Caribou Gourmand</a></li>
                           <li><a href="https://www.restomontreal.ca/resto/caribou-gourmand-montreal/10879/en/" target="_new">Caribou Gourmand</a></li>
                           <li><a href="https://www.restomontreal.ca/resto/thailande-montreal/1741/en/" target="_new">Thailande</a></li>
@@ -281,6 +302,8 @@
                           <li><a href="https://www.restomontreal.ca/resto/lobby-bar-espace-locatif-montreal/4406/en/" target="_new">Lobby Bar - Espace Locatif</a></li>
                         </ul> 
                 </div>
+
+            <!-- PHOTO GALLERY: Horizontal scroll of restaurant images -->    
 		        <div id="photo-gallery">
 		            <h3>Photo Gallery</h3>
 					  <!-- Image slides -->
@@ -334,19 +357,26 @@
 			            <img src="images/sv.png">  
 			            <img src="images/thai.gif">  
 			            <img src="images/zeez.gif">
-		        </div>
+		    </div>
 				<div id="average-rating">
-					<h3>Average Rating</h3>
-                		<img src="images/fourandahalf.jpg"> <!---change-->
-                </div>  
-			</div>
-			<div id="map"></div>
+          <!-- AVERAGE RATING: this was mostly to fill space for aesthetic flow -->
+           <h3>Average Rating</h3>
+                		<img src="images/fourandahalf.jpg">
+        </div>  
+			  </div>
+
+        <!-- MAP CONTAINER: Interactive Mapbox map showing restaurant locations -->
+			  <div id="map"></div>
         </div>
     </body>
 
+  <!-- JAVASCRIPT: Map initialization and functionality -->  
 	<script>
+      // Mapbox access token for API authentication
     	mapboxgl.accessToken = 'pk.eyJ1IjoiYW5nbGUta3ByIiwiYSI6ImNtZjJybG10YzFkbnUycG80N3J5cDVid2QifQ.SoIeeUn_3CNLmzU2cgtv1w';
-	    const geojson = {
+	    
+      // GEOJSON DATA: Restaurant locations and properties obtained through web scraping and geoparsing
+      const geojson = {
         "type": "FeatureCollection",
         "features": [
           {
@@ -1351,21 +1381,24 @@
           }
         ]
       }
-          
+      // i probably should have read these from the geojson file insteaed of pasting directly in html
+       
+      // Initialize Mapbox map
       const map = new mapboxgl.Map({
           container: 'map', // container ID
           // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-          style: 'mapbox://styles/angle-kpr/cmgz572e500bo01qrekyu4rdx', // style URL
-          center: [-73.58257846929828, 45.53062938178555], // starting position
+          style: 'mapbox://styles/angle-kpr/cmgz572e500bo01qrekyu4rdx',
+          center: [-73.58257846929828, 45.53062938178555],
           zoom: 13 
       }); 
       
-      // add markers to map
+      // add markers to map: Create visual points for each restaurant (conditional on rating: 5 or 4.5)
       for (const feature of geojson.features) {
         // create a HTML element for each feature
         const el = document.createElement('div');
         el.className = 'marker';
         
+        // set different marker images based on rating
         if (feature.properties.rating === 5) {
           el.style.backgroundImage = "url('images/star.png')";
         } else if (feature.properties.rating === 4.5) {
